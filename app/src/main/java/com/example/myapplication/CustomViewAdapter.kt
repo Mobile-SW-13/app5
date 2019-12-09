@@ -11,7 +11,7 @@ import android.widget.TextView
 
 class CustomViewAdapter(val wordListCV: ArrayList<Word>, val type : Int): BaseAdapter(){
 
-    var defRefresh : Int = -1
+    var defRefresh : Int = -1 //
 
     override fun getCount(): Int {
         return wordListCV.size
@@ -30,8 +30,6 @@ class CustomViewAdapter(val wordListCV: ArrayList<Word>, val type : Int): BaseAd
         var context = parent
 
 
-
-
         if (view == null) {
             if(type==2)
                 view = LayoutInflater.from(context!!.context).inflate(R.layout.layout_word_detail, null) as View
@@ -39,6 +37,13 @@ class CustomViewAdapter(val wordListCV: ArrayList<Word>, val type : Int): BaseAd
                 view = LayoutInflater.from(context!!.context).inflate(R.layout.layout_word_mean, null) as View
             else if(type==0)
                 view = LayoutInflater.from(context!!.context).inflate(R.layout.layout_word_name, null) as View
+
+            else if(type==5)
+                view = LayoutInflater.from(context!!.context).inflate(R.layout.layout_word_detail_other, null) as View
+            else if(type==4)
+                view = LayoutInflater.from(context!!.context).inflate(R.layout.layout_word_detail_other, null) as View
+            else if(type==3)
+                view = LayoutInflater.from(context!!.context).inflate(R.layout.layout_word_detail_other, null) as View
         }
 
         if(type == 2){
@@ -81,6 +86,7 @@ class CustomViewAdapter(val wordListCV: ArrayList<Word>, val type : Int): BaseAd
         }else if(type==0){
             var wordMean = view?.findViewById(R.id.txt_word_mean) as TextView
             var wordName = view?.findViewById(R.id.txt_word_name) as TextView
+
             var buttonDeleteWord = view?.findViewById(R.id.btn_word_delete) as Button
 
             var listViewItem = wordListCV[position]
@@ -95,7 +101,41 @@ class CustomViewAdapter(val wordListCV: ArrayList<Word>, val type : Int): BaseAd
 
             return view
 
-        }else{
+        }else if(type == 5) {
+            var wordMean = view?.findViewById(R.id.txt_word_mean) as TextView
+            var wordName = view?.findViewById(R.id.txt_word_name) as TextView
+
+            var listViewItem = wordListCV[position]
+
+            wordMean.setText(listViewItem.wordMean)
+            wordName.setText(listViewItem.wordName)
+
+            return view
+        }
+        else if(type == 4) {
+            var wordMean = view?.findViewById(R.id.txt_word_mean) as TextView
+            var wordName = view?.findViewById(R.id.txt_word_name) as TextView
+
+            var listViewItem = wordListCV[position]
+
+            wordMean.setText(listViewItem.wordMean)
+            wordName.setText("")
+
+            return view
+        }
+        else if(type == 3) {
+            var wordMean = view?.findViewById(R.id.txt_word_mean) as TextView
+            var wordName = view?.findViewById(R.id.txt_word_name) as TextView
+
+            var listViewItem = wordListCV[position]
+
+            wordMean.setText("")
+            wordName.setText(listViewItem.wordName)
+
+            return view
+        }
+
+        else{
             var wordMean = view?.findViewById(R.id.txt_word_mean) as TextView
             var wordName = view?.findViewById(R.id.txt_word_name) as TextView
             var buttonDeleteWord = view?.findViewById(R.id.btn_word_delete) as Button

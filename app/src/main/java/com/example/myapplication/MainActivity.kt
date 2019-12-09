@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         wordList.add(Word("banana","바나나"))
 
         if(intent.hasExtra("wordList")){
-            var getFindBundle = intent.getBundleExtra("wordList")
+            var getFindBundle = intent.getBundleExtra("wordList") //bundle객체전송
             wordList = getFindBundle.get("word") as ArrayList<Word>
         }
 
@@ -34,7 +34,6 @@ class MainActivity : AppCompatActivity() {
         button_find.setOnClickListener{
             var findBundle  = Bundle()
             findBundle.putSerializable("word", wordList)
-
             val intent=Intent(this,FindActivity::class.java)
             intent.putExtra("wordList", findBundle)
             startActivityForResult(intent,1)
@@ -43,7 +42,6 @@ class MainActivity : AppCompatActivity() {
         button_share.setOnClickListener{
             var findBundle  = Bundle()
             findBundle.putSerializable("word", wordList)
-
             val intent=Intent(this,ShareActivity::class.java)
             intent.putExtra("wordList", findBundle)
             startActivityForResult(intent,1)
@@ -88,12 +86,9 @@ class MainActivity : AppCompatActivity() {
         var bothFragment = Fragment_both()
         bothFragment.arguments = bothBundle
 
-
-        supportFragmentManager.beginTransaction()
+        supportFragmentManager.beginTransaction()//fragmenttraction을 가져오기 위해
             .replace(R.id.fragment, bothFragment)
             .commit()
-
-
     }
 
     fun FragmentMean(){
@@ -102,7 +97,6 @@ class MainActivity : AppCompatActivity() {
 
         var meanFragment = Fragment_mean()
         meanFragment.arguments = meanBundle
-
 
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment, meanFragment)
@@ -116,12 +110,10 @@ class MainActivity : AppCompatActivity() {
         var wordFragment = Fragment_word()
         wordFragment.arguments = wordBundle
 
-
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment, wordFragment)
             .commit()
     }
-
 }
 
 data class Word(

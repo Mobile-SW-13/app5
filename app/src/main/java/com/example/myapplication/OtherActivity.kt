@@ -49,7 +49,7 @@ class OtherActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if(requestCode == 1){
-            if(resultCode == 1){
+            if(resultCode == 1){//??
                 if(data!!.hasExtra("wordList")){
                     var getBundle = data.getBundleExtra("wordList")
                     wordList = getBundle.get("word") as ArrayList<Word>
@@ -68,7 +68,7 @@ class OtherActivity : AppCompatActivity() {
         var bothBundle  = Bundle()
         bothBundle.putSerializable("word", wordList)
 
-        var bothFragment = Fragment_both()
+        var bothFragment = Fragment_both_Other()
         bothFragment.arguments = bothBundle
 
 
@@ -83,7 +83,7 @@ class OtherActivity : AppCompatActivity() {
         var meanBundle  = Bundle()
         meanBundle.putSerializable("word", wordList)
 
-        var meanFragment = Fragment_mean()
+        var meanFragment = Fragment_mean_Other()
         meanFragment.arguments = meanBundle
 
 
@@ -96,7 +96,7 @@ class OtherActivity : AppCompatActivity() {
         var wordBundle  = Bundle()
         wordBundle.putSerializable("word", wordList)
 
-        var wordFragment = Fragment_word()
+        var wordFragment = Fragment_word_Other()
         wordFragment.arguments = wordBundle
 
 
